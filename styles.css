@@ -1,0 +1,69 @@
+/* Cài đặt cho toàn trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fbe9e7;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    color: #e57373;
+    font-size: 3rem;
+}
+
+p {
+    color: #4e342e;
+    font-size: 1.2rem;
+}
+
+button {
+    background-color: #ffab91;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ff7043;
+}
+
+.memories {
+    margin-top: 50px;
+}
+
+.memory-slider {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.memory-slider img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+
+#surprise-content img {
+    width: 300px;
+    margin-top: 20px;
+}
+
+/* Cấu hình canvas để không che nền */
+canvas {
+    position: absolute;
+    height: 130%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;  /* Cho phép tương tác với nội dung phía sau */
+    background: transparent;  /* Loại bỏ nền canvas */
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng 20/10</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <!-- Canvas để vẽ đồ họa -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Nút tắt/bật nhạc -->
+    <button id="toggleMusic">Bật/Tắt nhạc</button>
+
+    <!-- Tiêu đề chính -->
+    <div class="container">
+        <h1>Chúc mừng 20/10, em yêu!</h1>
+        <div style="align-items: center;display: flex;justify-content: center;">
+            <p style="width: 70%;">"Cậu yêu ơi,
+                Hôm nay là ngày 20/10 - ngày dành riêng để tớ gửi những lời yêu thương nhất đến cậu. Cảm ơn cậu đã luôn
+                ở
+                bên tớ, cùng tớ chia sẻ những niềm vui và khó khăn trong cuộc sống. Tớ thật sự may mắn khi có một người
+                tuyệt vời như cậu ở bên cạnh. Tớ hứa sẽ luôn yêu thương, quan tâm và dành những điều tốt đẹp nhất cho
+                cậu,
+                không chỉ hôm nay mà còn cả những ngày sau này nữa. <br>
+                Chúc cậu 20/10 thật hạnh phúc và tràn ngập yêu thương! Yêu cậu rất nhiều <3" </p>
+        </div>
+    </div>
+
+    <!-- Phần kỷ niệm -->
+    <div class="memories">
+        <h2>Kỷ niệm của chúng ta</h2>
+        <div class="memory-slider">
+            <img src="images/1.jpg" alt="Kỷ niệm 1">
+            <img src="images/2.jpg" alt="Kỷ niệm 2">
+            <img src="images/3.jpg" alt="Kỷ niệm 3">
+            <img src="images/2.jpg" alt="Kỷ niệm 4">
+            <img src="images/1.jpg" alt="Kỷ niệm 5">
+        </div>
+    </div>
+
+    <!-- Phần bất ngờ -->
+    <button id="surprise-btn">Nhấn để biết thêm thông tin chi tiết!</button>
+    <div id="surprise-content" style="display:none;">
+        <p>Em có biết anh yêu em nhiều như thế nào không?</p>
+        <img src="images/heart.png" alt="Hình ảnh kỷ niệm của chúng ta">
+    </div>
+
+    <!-- Phần nhạc nền -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="music/I like you the most.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Xử lý sự kiện nhấn nút bất ngờ
+        // const surpriseBtn = document.getElementById('surprise-btn');
+        // const surpriseContent = document.getElementById('surprise-content');
+
+        // surpriseBtn.addEventListener('click', () => {
+        //     surpriseContent.style.display = 'block';  // Hiển thị phần nội dung bất ngờ
+        //     surpriseBtn.style.display = 'none';  // Ẩn nút sau khi nhấn
+        // });
+        document.getElementById('surprise-btn').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Bất ngờ!',
+                text: 'Em có biết anh yêu em nhiều như thế nào không?',
+                imageUrl: 'images/1.jpg',
+                imageWidth: 300,
+                imageHeight: 380,
+                imageAlt: 'Hình ảnh kỷ niệm của chúng ta',
+                confirmButtonText: 'Đóng'
+            });
+        });
+
+    </script>
+
+    <script>
+        // Nhạc nền
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const toggleMusicBtn = document.getElementById('toggleMusic');
+
+        // Tự động phát nhạc khi trang tải (nếu trình duyệt cho phép)
+        window.addEventListener('load', () => {
+            backgroundMusic.play().catch(error => {
+                console.log("Autoplay bị chặn bởi trình duyệt:", error);
+                toggleMusicBtn.textContent = 'Nhấn để bật nhạc';
+            });
+        });
+
+        toggleMusicBtn.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                toggleMusicBtn.textContent = 'Tắt nhạc';
+            } else {
+                backgroundMusic.pause();
+                toggleMusicBtn.textContent = 'Bật nhạc';
+            }
+        });
+
+        // Hiệu ứng canvas
+        var canvas = document.getElementById("canvas"),
+            ctx = canvas.getContext("2d"),
+            things = [],
+            thingsCount = 124,
+            mouse = {
+                x: -100,
+                y: -100
+            },
+            minDist = 150;
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var image = new Image();
+        // image.src = 'https://i.pinimg.com/originals/90/2c/2b/902c2bbccb72ca76cf3bbe95741174e9.png';
+        image.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Love_heart_uidaodjsdsew.gif/1200px-Love_heart_uidaodjsdsew.gif';
+        // image.src = 'https://static.wixstatic.com/media/2cd43b_57438aebde5a4b0fa20c6880a9fafabf~mv2.png/v1/fill/w_320,h_272,fp_0.50_0.50/2cd43b_57438aebde5a4b0fa20c6880a9fafabf~mv2.png'
+
+        for (var i = 0; i < thingsCount; i++) {
+            let opacity = Math.random() + 0.4;
+            let thingWidth = (Math.floor(Math.random() * 20) + 20) * (opacity + 0.4);
+            let thingHeight = image.naturalHeight / image.naturalWidth * thingWidth;
+            let speed = Math.random() * 1 + 0.5;
+            things.push({
+                width: thingWidth,
+                height: thingHeight,
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - thingHeight,
+                speed: speed,
+                vY: speed,
+                vX: 0,
+                d: Math.random() * 1.2 - 0.6,
+                stepSize: (Math.random()) / 20,
+                step: 0,
+                angle: Math.random() * 180 - 90,
+                rad: Math.random(),
+                opacity: opacity,
+                _ratate: Math.random()
+            });
+        }
+
+        function drawThings() {
+            things.map((thing) => {
+                ctx.beginPath();
+                thing.rad = (thing.angle * Math.PI) / 180;
+                ctx.save();
+                var cx = thing.x + thing.width / 2;
+                var cy = thing.y + thing.height / 2;
+                ctx.globalAlpha = thing.opacity;
+                ctx.setTransform(
+                    Math.cos(thing.rad),
+                    Math.sin(thing.rad),
+                    -Math.sin(thing.rad),
+                    Math.cos(thing.rad),
+                    cx - cx * Math.cos(thing.rad) + cy * Math.sin(thing.rad),
+                    cy - cx * Math.sin(thing.rad) - cy * Math.cos(thing.rad)
+                );
+                ctx.drawImage(image, thing.x, thing.y, thing.width, thing.height);
+                ctx.restore();
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawThings();
+        }
+
+        function update() {
+            things.map((thing) => {
+                var dist = Math.sqrt((thing.x - mouse.x) ** 2 + (thing.y - mouse.y) ** 2);
+
+                if (dist < minDist) {
+                    var force = minDist / (dist * dist),
+                        xcomp = (mouse.x - thing.x) / dist,
+                        ycomp = (mouse.y - thing.y) / dist,
+                        deltaV = force * 2;
+
+                    thing.vX -= deltaV * xcomp;
+                    thing.vY -= deltaV * ycomp;
+
+                    if (thing.d * xcomp > 0) {
+                        thing.d = 0 - thing.d;
+                    }
+                } else {
+                    thing.vX *= .98;
+                    if (thing.vY < thing.speed) {
+                        thing.vY = thing.speed;
+                    }
+                    thing.vX += Math.cos(thing.step += (Math.random() * 0.05)) * thing.stepSize;
+                }
+
+                thing.y += thing.vY;
+                thing.x += thing.vX + thing.d;
+
+                var _angle = Math.random() + 0.2;
+                if (thing._ratate == 0) {
+                    thing.angle += _angle;
+                } else {
+                    thing.angle -= _angle;
+                }
+
+                if (thing.y > canvas.height) {
+                    reset(thing);
+                }
+
+                if (thing.x > canvas.width || thing.x < (0 - thing.width)) {
+                    reset(thing);
+                }
+            });
+        }
+
+        function reset(thing) {
+            thing.opacity = Math.random() + 0.4;
+            thing.width = (Math.floor(Math.random() * 20) + 20) * (thing.opacity + 0.4);
+            thing.height = image.naturalHeight / image.naturalWidth * thing.width;
+            thing.x = Math.floor(Math.random() * canvas.width);
+            thing.y = 0 - thing.height;
+            thing.speed = Math.random() * 1 + 0.5;
+            thing.vY = thing.speed;
+            thing.vX = 0;
+            thing._ratate = Math.random();
+        }
+
+        canvas.addEventListener('mousemove', function (e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        function tick() {
+            draw();
+            update();
+            requestAnimationFrame(tick);
+        }
+
+        tick();
+    </script>
+</body>
+
+</html>
