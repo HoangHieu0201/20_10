@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lời Chúc 20/10 - Dành Tặng Chị Em Phụ Nữ Việt Nam</title>
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Thiết lập font Inter làm mặc định */
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Gradient nền ấm áp, phù hợp với chủ đề */
+        background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+      }
+
+      /* Thêm hiệu ứng cho thiệp */
+      .card-enter {
+        animation: fadeInScale 0.8s ease-out;
+      }
+
+      @keyframes fadeInScale {
+        from {
+          opacity: 0;
+          transform: scale(0.8) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* Hiệu ứng chuyển động trái tim */
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        15% {
+          transform: scale(1.05);
+        }
+        30% {
+          transform: scale(1);
+        }
+        45% {
+          transform: scale(1.05);
+        }
+        60% {
+          transform: scale(1);
+        }
+      }
+      .heart-beat {
+        animation: heartbeat 2s infinite ease-in-out;
+      }
+
+      /* HIỆU ỨNG KHUNG VIỀN SÁNG TẠO (GLOWING BORDER) */
+      .image-glow {
+        border: 3px solid #ff70a6; /* Màu viền chính */
+        box-shadow: 0 0 15px rgba(255, 112, 166, 0.7),
+          0 0 25px rgba(255, 112, 166, 0.5);
+        animation: pulseGlow 3s infinite alternate ease-in-out;
+      }
+
+      @keyframes pulseGlow {
+        from {
+          box-shadow: 0 0 10px rgba(255, 112, 166, 0.5),
+            0 0 20px rgba(255, 112, 166, 0.3);
+        }
+        to {
+          box-shadow: 0 0 15px rgba(255, 112, 166, 0.8),
+            0 0 30px rgba(255, 112, 166, 0.6);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CONTAINER CHÍNH -->
+    <div class="p-4 w-full max-w-lg">
+      <!-- MÀN HÌNH 1: ĐĂNG NHẬP -->
+      <div
+        id="login-screen"
+        class="card-enter bg-white p-8 md:p-10 rounded-xl shadow-2xl transition-all duration-500"
+      >
+        <h1 class="text-3xl font-extrabold text-pink-600 text-center mb-6">
+          Cổng Chúc Mừng 20/10
+        </h1>
+        <p class="text-center text-gray-500 mb-8">
+          Nhập tài khoản và mật khẩu bí mật để mở thiệp!
+        </p>
+
+        <form id="login-form" class="space-y-6">
+          <div>
+            <label
+              for="username"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Tài khoản</label
+            >
+            <input
+              type="text"
+              id="username"
+              placeholder="Ví dụ: hoa, lan, ha..."
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-300 shadow-sm"
+            />
+          </div>
+
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Mật khẩu</label
+            >
+            <input
+              type="password"
+              id="password"
+              placeholder="Mật khẩu bí mật"
+              required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-300 shadow-sm"
+            />
+          </div>
+
+          <p
+            id="error-message"
+            class="text-sm text-red-500 text-center hidden pt-2"
+          >
+            Mật khẩu không đúng. Vui lòng thử lại!
+          </p>
+
+          <button
+            type="submit"
+            class="w-full flex items-center justify-center bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 rounded-xl transition duration-300 transform hover:scale-[1.01] shadow-lg shadow-pink-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="w-5 h-5 mr-2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+              />
+            </svg>
+            Mở Thiệp Chúc Mừng
+          </button>
+        </form>
+      </div>
+
+      <!-- MÀN HÌNH 2: THIỆP CHÚC MỪNG -->
+      <div
+        id="greeting-screen"
+        class="hidden card-enter bg-white p-8 md:p-10 rounded-xl shadow-2xl border-4 border-pink-400/50"
+        style="transition: opacity 1s"
+      >
+        <div class="text-center">
+          <!-- Icon và hiệu ứng -->
+          <svg
+            class="heart-beat mx-auto w-16 h-16 text-red-500 mb-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="m11.645 20.91-.762-.51a18.79 18.79 0 0 1-5.187-3.924c-2.316-2.074-2.83-4.798-2.62-6.574a6.62 6.62 0 0 1 1.758-4.484 6.62 6.62 0 0 1 4.484-1.758c1.776-.21 4.5.304 6.574 2.62a18.79 18.79 0 0 1 3.924 5.187l.51.762-.51.762a18.79 18.79 0 0 1-3.924 5.187c-2.074 2.316-4.798 2.83-6.574 2.62a6.62 6.62 0 0 1-4.484-1.758 6.62 6.62 0 0 1-1.758-4.484c.21-1.776-.304-4.5-2.62-6.574-.954-1.066-2.584-1.185-3.666-.34z"
+            />
+          </svg>
+
+          <!-- Tiêu đề sẽ được cá nhân hóa -->
+          <h2
+            id="greeting-title"
+            class="text-4xl font-black text-pink-700 mb-4 tracking-tight"
+          >
+            CHÚC MỪNG NGÀY 20/10!
+          </h2>
+
+          <!-- Hình ảnh cá nhân (sẽ được tải bằng JS sau khi đăng nhập) -->
+          <img
+            id="user-image"
+            src=""
+            alt="Hình ảnh chúc mừng cá nhân"
+            class="image-glow w-full h-auto object-cover rounded-xl my-6 mx-auto transition-all duration-500 transform hover:scale-[1.03] cursor-pointer"
+          />
+
+          <div
+            class="text-lg text-gray-700 text-left space-y-4 leading-relaxed"
+          >
+            <!-- Lời chúc sẽ được cá nhân hóa -->
+            <p id="personalized-greeting">
+              Nhân ngày Phụ nữ Việt Nam 20/10, xin gửi lời chúc tốt đẹp nhất đến
+              tất cả chị em. Chúc các chị luôn rạng rỡ, xinh đẹp, thành công và
+              ngập tràn hạnh phúc trong cuộc sống.
+            </p>
+            <p class="font-semibold text-pink-600 italic">
+              Chúc chị em một ngày lễ thật ý nghĩa và vui vẻ!
+            </p>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-pink-100">
+            <p class="text-sm text-gray-500">- Leo -</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- 1. KHAI BÁO NHIỀU TÀI KHOẢN VÀ DỮ LIỆU CÁ NHÂN HÓA ---
+      const USER_DATA = {
+        luna: {
+          password: "2010",
+          name: "Luna",
+          imageUrl: "./img/luna.png",
+          greeting: `Chúc chị Nhàn – người đồng nghiệp đáng mến của em – có một ngày 20/10 thật nhiều niềm vui và tiếng cười. 
+          Chúc chị luôn giữ nụ cười tươi tắn, tràn đầy năng lượng và bình yên trong cuộc sống. Dù hiện tại chưa có “nửa kia”, 
+          nhưng em tin rằng chị – người dịu dàng, tốt bụng và bản lĩnh như chị – chắc chắn sẽ gặp được một người xứng đáng, biết trân trọng và yêu thương chị thật lòng.
+           20/10 thật vui chị nhé 💐💖!`,
+        },
+        grace: {
+          password: "2010",
+          name: "grace",
+          imageUrl: "./img/hue.png",
+          greeting: `Nhân ngày 20/10, gửi đến Huệ – cô đồng nghiệp vui tính, nhiệt tình và luôn sẵn lòng giúp đỡ người khác – những lời chúc tốt đẹp nhất! Cảm ơn Huệ vì luôn mang lại năng lượng tích cực và những nụ cười cho mọi người xung quanh. Chúc Huệ luôn hạnh phúc, công việc thuận lợi, gặp nhiều niềm vui và được yêu thương thật nhiều. Mong rằng nụ cười tươi tắn của Huệ sẽ luôn rực rỡ như hôm nay 🌷😊!`,
+
+        },
+        maianh: {
+          password: "2010",
+          name: "maianh",
+          imageUrl: "./img/maianh.jpg",
+          greeting: `Mai Anh à, 20/10 vui vẻ nhé! Cảm ơn em vì những lần chia sẻ đồ ăn ngon, những câu chuyện nhỏ nhưng luôn khiến anh cảm thấy thoải mái và ấm áp. Chúc em luôn giữ được nét đáng yêu, hồn nhiên cùng trái tim chân thành như hiện tại. Mong rằng mỗi ngày của em đều tràn ngập niềm vui, nhiều điều ngọt ngào như những món ăn em mang đến vậy 🍰🌸!`,
+
+        },
+        kimanh: {
+          password: "2010",
+          name: "kimanh",
+          imageUrl: "./img/kimanh.jpg",
+          greeting: `Chúc Kim Anh có một ngày 20/10 thật nhiều niềm vui và ý nghĩa. Cậu luôn là một người đặc biệt – nhẹ nhàng, điềm đạm nhưng rất kiên cường. Biết cậu sắp sang Trung Quốc học thạc sĩ, thật lòng chúc cậu có một hành trình mới thật thuận lợi, học tập tốt và gặp nhiều người tốt nữa. Cảm ơn cậu vì đã luôn dịu dàng và kiên nhẫn dạy tớ tiếng Trung, dù đôi khi tớ hỏi mấy thứ ngốc nghếch như nghe nhạc trung để lên hsk6 😅. Mong rằng chặng đường sắp tới cậu vẫn luôn bình an và hạnh phúc nhé 🌹🇨🇳!`,
+
+        },
+      };
+
+      // Lấy các phần tử DOM
+      const loginScreen = document.getElementById("login-screen");
+      const greetingScreen = document.getElementById("greeting-screen");
+      const loginForm = document.getElementById("login-form");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const errorMessage = document.getElementById("error-message");
+
+      // Các phần tử cần cập nhật
+      const userImage = document.getElementById("user-image");
+      const greetingTitle = document.getElementById("greeting-title");
+      const personalizedGreeting = document.getElementById(
+        "personalized-greeting"
+      );
+
+      /**
+       * Hàm xử lý logic đăng nhập
+       */
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn chặn form submit mặc định
+
+        const username = usernameInput.value.trim().toLowerCase();
+        const password = passwordInput.value.trim();
+
+        const userData = USER_DATA[username];
+        const correctPassword = userData ? userData.password : null;
+
+        if (correctPassword && password === correctPassword) {
+          // Đăng nhập thành công
+          errorMessage.classList.add("hidden");
+
+          // === CẬP NHẬT NỘI DUNG CÁ NHÂN HÓA TRƯỚC KHI CHUYỂN TRANG ===
+          userImage.src = userData.imageUrl;
+          userImage.alt = userData.placeholderText;
+
+          // Cập nhật tiêu đề và lời chúc
+          greetingTitle.textContent = `CHÚC MỪNG 20/10!`;
+          personalizedGreeting.textContent = userData.greeting;
+
+          // ==========================================================
+
+          // Chuyển đổi giao diện
+          loginScreen.classList.remove("card-enter");
+          loginScreen.style.opacity = 0;
+
+          setTimeout(() => {
+            loginScreen.classList.add("hidden");
+
+            // Hiện màn hình chúc mừng với hiệu ứng card-enter
+            greetingScreen.classList.remove("hidden");
+            greetingScreen.classList.add("card-enter");
+          }, 500); // Đợi 0.5s để hiệu ứng mờ hoàn thành
+        } else {
+          // Đăng nhập thất bại
+          errorMessage.classList.remove("hidden");
+
+          // Thêm hiệu ứng rung nhẹ khi nhập sai
+          loginScreen.classList.add("animate-shake");
+          setTimeout(() => {
+            loginScreen.classList.remove("animate-shake");
+          }, 500);
+        }
+      });
+    </script>
+
+    <!-- Thêm hiệu ứng rung (sử dụng custom CSS keyframes) -->
+    <style>
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        20%,
+        60% {
+          transform: translateX(-10px);
+        }
+        40%,
+        80% {
+          transform: translateX(10px);
+        }
+      }
+      .animate-shake {
+        animation: shake 0.5s ease-in-out;
+      }
+    </style>
+  </body>
+</html>
